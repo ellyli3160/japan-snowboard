@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>日本行程 2026</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%23f5f0e8'/><path d='M16 3L29 26H3Z' fill='%23c9b99a'/><path d='M11.5 18L16 3l4.5 15Z' fill='%23fdfaf4'/><circle cx='23' cy='14' r='2.2' fill='%238b4513'/><line x1='22' y1='16' x2='20' y2='21' stroke='%238b4513' stroke-width='1.8' stroke-linecap='round'/><line x1='23' y1='16' x2='25.5' y2='20' stroke='%238b4513' stroke-width='1.8' stroke-linecap='round'/><line x1='17' y1='23' x2='27' y2='20.5' stroke='%238b4513' stroke-width='2.2' stroke-linecap='round'/><line x1='22' y1='18' x2='19' y2='21' stroke='%238b4513' stroke-width='1' stroke-linecap='round' opacity='.5'/><line x1='24' y1='18' x2='27' y2='21' stroke='%238b4513' stroke-width='1' stroke-linecap='round' opacity='.5'/></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=DM+Serif+Display&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -434,6 +435,51 @@
     background: var(--accent);
     transform: scale(1.2);
   }
+
+  /* ── Auto-scroll current section ── */
+  .card { position: relative; }
+
+  .is-now {
+    border-color: var(--accent) !important;
+    border-left-width: 3px !important;
+  }
+
+  .is-now-badge {
+    position: absolute;
+    top: -0.9rem;
+    left: 0;
+    font-size: 0.62rem;
+    font-family: 'Noto Serif TC', serif;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .is-now-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: now-blink 1.2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes now-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  @keyframes now-glow {
+    0% { box-shadow: 0 0 0 0 rgba(139,69,19,0.35); }
+    60% { box-shadow: 0 0 0 8px rgba(139,69,19,0); }
+    100% { box-shadow: 0 0 0 0 rgba(139,69,19,0); }
+  }
+
+  .is-now { animation: now-glow 1.6s ease-out 0.5s both; }
 </style>
 </head>
 <body>
@@ -445,14 +491,14 @@
   </div>
 
   <!-- Day 1 台灣出發 -->
-  <div class="day-block">
+  <div class="day-block" id="day-0310">
     <div class="day-label">
       <span class="date">3.10</span>
       <span class="weekday">Tuesday<br>出發日</span>
     </div>
 
     <!-- 台灣高鐵 -->
-    <div class="card">
+    <div class="card" id="card-310-hsr">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-hsr">🚄</div>
@@ -477,7 +523,7 @@
     <div class="connector-line"></div>
 
     <!-- 機場捷運 -->
-    <div class="card">
+    <div class="card" id="card-310-mrt">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-mrt">🚇</div>
@@ -504,7 +550,7 @@
   <hr class="divider">
 
     <!-- 航班去程 -->
-    <div class="card">
+    <div class="card" id="card-310-flight">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-flight">✈️</div>
@@ -532,7 +578,7 @@
     <div class="connector-line"></div>
 
     <!-- 機場交通選項：左右滑動 -->
-    <div class="transport-slider-wrap">
+    <div class="transport-slider-wrap" id="card-310-transport">
       <div class="transport-label">機場交通 · 滑動選擇方案</div>
       <div class="transport-slider">
 
@@ -618,7 +664,7 @@
     <div class="connector-line"></div>
 
     <!-- 住宿 -->
-    <div class="card">
+    <div class="card" id="card-310-hotel">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-hotel">🏨</div>
@@ -643,13 +689,13 @@
   <hr class="divider">
 
   <!-- Day 2 -->
-  <div class="day-block">
+  <div class="day-block" id="day-0311">
     <div class="day-label">
       <span class="date">3.11</span>
       <span class="weekday">Wednesday<br>移動日</span>
     </div>
 
-    <div class="card">
+    <div class="card" id="card-311-checkout">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-hotel">🏨</div>
@@ -667,7 +713,7 @@
     <div class="connector-line"></div>
 
     <!-- 剪頭髮預約 -->
-    <div class="card">
+    <div class="card" id="card-311-salon">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-salon">✂️</div>
@@ -688,7 +734,7 @@
     <div class="connector-line"></div>
 
     <!-- 上野→高崎 -->
-    <div class="card">
+    <div class="card" id="card-311-train1">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-train">🚄</div>
@@ -714,7 +760,7 @@
     <div class="connector-line"></div>
 
     <!-- 高崎→越後湯澤 -->
-    <div class="card">
+    <div class="card" id="card-311-train2">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-train">🚄</div>
@@ -740,7 +786,7 @@
     <div class="connector-line"></div>
 
     <!-- 雪具租借 -->
-    <div class="card">
+    <div class="card" id="card-311-rental">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-snow">⛷️</div>
@@ -764,7 +810,7 @@
     <div class="connector-line"></div>
 
     <!-- 高崎飯店入住 -->
-    <div class="card">
+    <div class="card" id="card-311-hotel">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-hotel">🏨</div>
@@ -791,13 +837,13 @@
   <hr class="divider">
 
   <!-- Day 3 -->
-  <div class="day-block">
+  <div class="day-block" id="day-0312">
     <div class="day-label">
       <span class="date">3.12</span>
       <span class="weekday">Thursday<br>滑雪日</span>
     </div>
 
-    <div class="card">
+    <div class="card" id="card-312-ski">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-snow">⛷️</div>
@@ -818,7 +864,7 @@
     <div class="connector-line"></div>
 
     <!-- 越後湯澤→高崎（回飯店） -->
-    <div class="card">
+    <div class="card" id="card-312-train">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-train">🚄</div>
@@ -844,13 +890,13 @@
   <hr class="divider">
 
   <!-- Day 4 -->
-  <div class="day-block">
+  <div class="day-block" id="day-0313">
     <div class="day-label">
       <span class="date">3.13</span>
       <span class="weekday">Friday<br>滑雪＋移動日</span>
     </div>
 
-    <div class="card">
+    <div class="card" id="card-313-checkout">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-hotel">🏨</div>
@@ -868,7 +914,7 @@
     <div class="connector-line"></div>
 
     <!-- 高崎→越後湯澤（最後一天滑雪） -->
-    <div class="card">
+    <div class="card" id="card-313-train1">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-train">🚄</div>
@@ -893,7 +939,7 @@
     <div class="connector-line"></div>
 
     <!-- Ski Day 3 -->
-    <div class="card">
+    <div class="card" id="card-313-ski">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-snow">⛷️</div>
@@ -914,7 +960,7 @@
     <div class="connector-line"></div>
 
     <!-- 越後湯澤→東京 -->
-    <div class="card">
+    <div class="card" id="card-313-train2">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-train">🚄</div>
@@ -939,7 +985,7 @@
     <div class="connector-line"></div>
 
     <!-- 南砂町飯店入住 -->
-    <div class="card">
+    <div class="card" id="card-313-hotel">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-hotel">🏨</div>
@@ -964,14 +1010,14 @@
   <hr class="divider">
 
   <!-- Day 5 回程 -->
-  <div class="day-block">
+  <div class="day-block" id="day-0314">
     <div class="day-label">
       <span class="date">3.14</span>
       <span class="weekday">Saturday<br>返台日</span>
     </div>
 
     <!-- 退房 -->
-    <div class="card">
+    <div class="card" id="card-314-checkout">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-hotel">🏨</div>
@@ -989,7 +1035,7 @@
     <div class="connector-line"></div>
 
     <!-- 南砂町→東京站 -->
-    <div class="card">
+    <div class="card" id="card-314-metro">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-mrt">🚇</div>
@@ -1007,7 +1053,7 @@
     <div class="connector-line"></div>
 
     <!-- N'EX -->
-    <div class="card">
+    <div class="card" id="card-314-nex">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-train">🚃</div>
@@ -1033,7 +1079,7 @@
     <div class="connector-line"></div>
 
     <!-- 回程航班 -->
-    <div class="card">
+    <div class="card" id="card-314-flight">
       <div class="card-inner">
         <div class="card-header">
           <div class="card-icon icon-flight">✈️</div>
@@ -1074,6 +1120,7 @@
 </div>
 </body>
 <script>
+  // ── Transport slider dots ──
   const slider = document.querySelector('.transport-slider');
   const dots = document.querySelectorAll('.dot');
   if (slider) {
@@ -1082,5 +1129,82 @@
       dots.forEach((d, i) => d.classList.toggle('active', i === idx));
     });
   }
+
+  // ── Auto-scroll to current itinerary section ──
+  (function () {
+    const now = new Date();
+    const y = now.getFullYear(), m = now.getMonth() + 1, d = now.getDate();
+    const t = now.getHours() * 60 + now.getMinutes();
+
+    if (y !== 2026 || m !== 3 || d < 10 || d > 14) return;
+
+    // [minutesSinceMidnight, elementId]
+    const schedule = {
+      10: [
+        [0,     'day-0310'],
+        [9*60,  'card-310-hsr'],
+        [9*60+47,'card-310-mrt'],
+        [12*60+10,'card-310-flight'],
+        [17*60+30,'card-310-transport'],
+        [20*60, 'card-310-hotel'],
+      ],
+      11: [
+        [0,     'day-0311'],
+        [9*60+30,'card-311-checkout'],
+        [11*60, 'card-311-salon'],
+        [14*60+30,'card-311-train1'],
+        [16*60+10,'card-311-train2'],
+        [17*60, 'card-311-rental'],
+        [18*60, 'card-311-hotel'],
+      ],
+      12: [
+        [0,     'day-0312'],
+        [9*60,  'card-312-ski'],
+        [15*60+30,'card-312-train'],
+      ],
+      13: [
+        [0,     'day-0313'],
+        [10*60+30,'card-313-checkout'],
+        [11*60, 'card-313-train1'],
+        [11*60+30,'card-313-ski'],
+        [15*60, 'card-313-train2'],
+        [17*60, 'card-313-hotel'],
+      ],
+      14: [
+        [0,     'day-0314'],
+        [11*60+30,'card-314-checkout'],
+        [12*60, 'card-314-metro'],
+        [12*60+33,'card-314-nex'],
+        [17*60+15,'card-314-flight'],
+      ],
+    };
+
+    const daySchedule = schedule[d];
+    if (!daySchedule) return;
+
+    let targetId = daySchedule[0][1];
+    for (const [time, id] of daySchedule) {
+      if (t >= time) targetId = id;
+      else break;
+    }
+
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    // Add "現在" badge (only to .card elements, not day blocks)
+    if (target.classList.contains('card')) {
+      target.classList.add('is-now');
+      const badge = document.createElement('div');
+      badge.className = 'is-now-badge';
+      badge.textContent = '現在';
+      target.insertBefore(badge, target.firstChild);
+    }
+
+    setTimeout(() => {
+      const offset = 24;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 300);
+  })();
 </script>
 </html>
