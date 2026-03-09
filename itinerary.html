@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本行程 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=DM+Serif+Display&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f5f0e8;
+    --warm-mid: #c9b99a;
+    --accent: #8b4513;
+    --accent-light: #d4956a;
+    --muted: #4a3f35;
+    --line: rgba(139,69,19,0.2);
+    --card-bg: #fdfaf4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .header::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0 auto 1.5rem;
+  }
+
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .header .subtitle {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.875rem;
+    color: #4a3f35;
+    letter-spacing: 0.15em;
+    margin-top: 0.6rem;
+    font-weight: 400;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: var(--line);
+    margin: 1.5rem auto 0;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .day-block {
+    margin-bottom: 2.5rem;
+  }
+
+  .day-label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .day-label .date {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .day-label .weekday {
+    font-size: 0.875rem;
+    font-family: 'Noto Serif TC', serif;
+    border-left: 1px solid var(--warm-mid);
+    padding-left: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    margin-bottom: 0.8rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 4px 4px 0 var(--warm-mid);
+  }
+
+  .card-inner {
+    padding: 1.2rem 1.4rem;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .icon-flight { background: #e8e0d4; }
+  .icon-hotel { background: #dde8e0; }
+  .icon-train { background: #e0dce8; }
+  .icon-snow { background: #dce8f0; }
+  .icon-hsr { background: #f0e8d8; }
+  .icon-mrt { background: #d8eaf0; }
+  .icon-salon { background: #f0dce8; }
+
+  .card-content { }
+
+  .card-type {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .card-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .card-detail {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .card-detail strong {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .route {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0.4rem 0;
+    font-size: 0.85rem;
+  }
+
+  .route .station {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .route .arrow {
+    color: var(--accent-light);
+    flex-shrink: 0;
+  }
+
+  .route .time {
+    font-size: 0.875rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--accent);
+    border: 1px solid var(--accent-light);
+    padding: 0.15rem 0.5rem;
+    border-radius: 1px;
+    margin-right: 0.4rem;
+    margin-top: 0.4rem;
+  }
+
+  .price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+    margin-top: 0.4rem;
+  }
+
+  .connector {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0 0.4rem 1.2rem;
+    gap: 0.5rem;
+  }
+
+  .connector-line {
+    width: 1px;
+    height: 20px;
+    background: var(--warm-mid);
+    margin-left: 17px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px dashed var(--warm-mid);
+    margin: 2rem 0;
+  }
+
+  .note-box {
+    background: rgba(139,69,19,0.04);
+    border-left: 3px solid var(--accent-light);
+    padding: 1rem 1.2rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-top: 2rem;
+  }
+
+  .note-box strong {
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.875rem;
+  }
+
+  /* ── Transport Slider ── */
+  .transport-slider-wrap {
+    margin-bottom: 0.8rem;
+  }
+
+  .transport-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    padding-left: 0.2rem;
+  }
+
+  .transport-slider {
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+  }
+
+  .transport-slider::-webkit-scrollbar { display: none; }
+
+  .transport-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 1.2rem 1.4rem;
+    flex: 0 0 calc(100% - 2rem);
+    scroll-snap-align: start;
+    transition: box-shadow 0.2s;
+  }
+
+  .transport-card:hover {
+    box-shadow: 4px 4px 0 var(--warm-mid);
+  }
+
+  .transport-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .transport-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .transport-option-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-light);
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    border-radius: 1px;
+    margin-bottom: 0.25rem;
+  }
+
+  .transport-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .transport-route-title {
+    font-size: 1rem;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+
+  .transport-trains {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .train-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .train-no {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(139,69,19,0.07);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    min-width: 48px;
+    text-align: center;
+  }
+
+  .train-times {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .t-dep {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .t-arr {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .t-station {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .t-arrow {
+    color: var(--accent-light);
+    font-size: 0.85rem;
+  }
+
+  .transport-info {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .transport-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+  }
+
+  .price-sub {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--warm-mid);
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .dot.active {
+    background: var(--accent);
+    transform: scale(1.2);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Japan 2026</h1>
+    <p class="subtitle">2026年3月10日 — 3月14日 · 5天4夜</p>
+  </div>
+
+  <!-- Day 1 台灣出發 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="date">3.10</span>
+      <span class="weekday">Tuesday<br>出發日</span>
+    </div>
+
+    <!-- 台灣高鐵 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-hsr">🚄</div>
+          <div>
+            <div class="card-type">台灣高鐵 · 612次</div>
+            <div class="card-title">台中 → 桃園</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">09:00 發</span>
+            <span class="station">台中</span>
+            <span class="arrow">→</span>
+            <span class="station">桃園</span>
+            <span class="time">09:36 到</span>
+          </div>
+          <div class="card-detail">車程 36 分鐘</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 機場捷運 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-mrt">🚇</div>
+          <div>
+            <div class="card-type">桃園機場捷運 · 直達車</div>
+            <div class="card-title">A18 高鐵桃園站 → A12 機場第一航廈</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">09:47 發</span>
+            <span class="station">A18</span>
+            <span class="arrow">→</span>
+            <span class="station">A12 T1</span>
+            <span class="time">10:06 到</span>
+          </div>
+          <div class="card-detail">車程 19 分鐘 · 直達紫色列車</div>
+          <div class="tag">⚠️ 起飛前 2 小時 04 分抵達</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+    <!-- 航班去程 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-flight">✈️</div>
+          <div>
+            <div class="card-type">Flight · Thai Lion Air SL 394</div>
+            <div class="card-title">桃園 → 東京成田</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="station">TPE</span>
+            <span class="arrow">——————→</span>
+            <span class="station">NRT</span>
+          </div>
+          <div class="card-detail">
+            <strong>出發</strong> 12:10 桃園國際機場 T1<br>
+            <strong>抵達</strong> 16:15 東京成田機場 T1<br>
+            <strong>飛行時間</strong> 3小時5分鐘 · 經濟艙
+          </div>
+          <div class="tag">訂位代號 NZHDDT</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 機場交通選項：左右滑動 -->
+    <div class="transport-slider-wrap">
+      <div class="transport-label">機場交通 · 滑動選擇方案</div>
+      <div class="transport-slider">
+
+        <!-- Option A: Skyliner -->
+        <div class="transport-card">
+          <div class="transport-header">
+            <div class="transport-icon icon-train">🚃</div>
+            <div>
+              <div class="transport-option-tag">Option A</div>
+              <div class="transport-name">Skyliner · 京成電鐵</div>
+            </div>
+          </div>
+          <div class="transport-route-title">成田機場 T1 → 京成上野</div>
+          <div class="transport-trains">
+            <div class="train-row">
+              <div class="train-no">No.56</div>
+              <div class="train-times">
+                <span class="t-dep">17:39</span>
+                <span class="t-station">T1 發</span>
+                <span class="t-arrow">→</span>
+                <span class="t-arr">18:24</span>
+                <span class="t-station">上野 到</span>
+              </div>
+            </div>
+            <div class="train-row">
+              <div class="train-no">No.58</div>
+              <div class="train-times">
+                <span class="t-dep">17:59</span>
+                <span class="t-station">T1 發</span>
+                <span class="t-arrow">→</span>
+                <span class="t-arr">18:48</span>
+                <span class="t-station">上野 到</span>
+              </div>
+            </div>
+          </div>
+          <div class="transport-info">全程約41分鐘 · 對號指定席</div>
+          <div class="transport-price">¥2,580 <span class="price-sub">線上早鳥 ¥2,310</span></div>
+        </div>
+
+        <!-- Option B: N'EX -->
+        <div class="transport-card">
+          <div class="transport-header">
+            <div class="transport-icon icon-train">🚃</div>
+            <div>
+              <div class="transport-option-tag">Option B</div>
+              <div class="transport-name">成田特快 N'EX · JR</div>
+            </div>
+          </div>
+          <div class="transport-route-title">成田機場 T1 → 東京站 → 上野</div>
+          <div class="transport-trains">
+            <div class="train-row">
+              <div class="train-no">No.40</div>
+              <div class="train-times">
+                <span class="t-dep">17:16</span>
+                <span class="t-station">T1 發</span>
+                <span class="t-arrow">→</span>
+                <span class="t-arr">18:20</span>
+                <span class="t-station">東京 到</span>
+              </div>
+            </div>
+            <div class="train-row">
+              <div class="train-no">No.42</div>
+              <div class="train-times">
+                <span class="t-dep">17:45</span>
+                <span class="t-station">T1 發</span>
+                <span class="t-arrow">→</span>
+                <span class="t-arr">18:50</span>
+                <span class="t-station">東京 到</span>
+              </div>
+            </div>
+          </div>
+          <div class="transport-info">全程約64分鐘 · 東京站轉山手線至上野約3分鐘</div>
+          <div class="transport-price">¥3,070 <span class="price-sub">JR Pass 免費 · 去回券 ¥5,000</span></div>
+        </div>
+
+      </div>
+      <div class="slider-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 住宿 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-hotel">🏨</div>
+          <div>
+            <div class="card-type">Hotel · Booking.com 已確認</div>
+            <div class="card-title">CAFE/MINIMAL HOTEL OUR OUR</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>地址</strong> <a href="https://maps.google.com/?q=東京都台東区柳橋2-20-13" target="_blank" style="color:var(--accent)">東京都台東區 Yanagibashi 2-20-13</a><br>
+            <strong>入住</strong> 下午4:00 起<br>
+            <strong>退房</strong> 2026年3月11日（三）上午10:00 前
+          </div>
+          <div class="tag">1晚</div>
+          <div class="tag">無需訂金</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Day 2 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="date">3.11</span>
+      <span class="weekday">Wednesday<br>移動日</span>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-hotel">🏨</div>
+          <div>
+            <div class="card-type">Check-out</div>
+            <div class="card-title">CAFE/MINIMAL HOTEL OUR OUR 退房</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">上午10:00 前退房</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 剪頭髮預約 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-salon">✂️</div>
+          <div>
+            <div class="card-type">Hair Salon · 已預約</div>
+            <div class="card-title">Monan Shibuya</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>時間</strong> 上午 11:00<br>
+            <strong>地點</strong> <a href="https://maps.google.com/?q=Monan+Shinjuku+Tokyo" target="_blank" style="color:var(--accent)">新宿（渋谷區）</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 上野→高崎 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-train">🚄</div>
+          <div>
+            <div class="card-type">上越新幹線 · 往新潟方向</div>
+            <div class="card-title">上野 → 高崎</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">14:46 發</span>
+            <span class="station">上野</span>
+            <span class="arrow">→</span>
+            <span class="station">高崎</span>
+            <span class="time">15:27 到</span>
+          </div>
+          <div class="card-detail">19號月台 · 朱鷺號 · 41分鐘 · 經2站</div>
+          <div class="price">¥4,810</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 高崎→越後湯澤 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-train">🚄</div>
+          <div>
+            <div class="card-type">上越新幹線 · 往新潟方向</div>
+            <div class="card-title">高崎 → 越後湯澤</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">16:28 發</span>
+            <span class="station">高崎</span>
+            <span class="arrow">→</span>
+            <span class="station">越後湯澤</span>
+            <span class="time">16:56 到</span>
+          </div>
+          <div class="card-detail">12號月台 · 朱鷺號 · 28分鐘 · 經2站</div>
+          <div class="price">¥4,090</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 雪具租借 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-snow">⛷️</div>
+          <div>
+            <div class="card-type">Snow Rental · 湯澤岩原滑雪場旁</div>
+            <div class="card-title">SNOW RENTAL SHOP</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>時間</strong> 下午 5:00<br>
+            <strong>地址</strong> <a href="https://maps.google.com/?q=新潟県南魚沼郡湯沢町土樽173-5" target="_blank" style="color:var(--accent)">〒949-6103 新潟縣南魚沼郡湯沢町土樽173-5</a><br>
+            <strong>營業時間</strong> 07:00 ～ 19:00<br>
+            <strong>電話</strong> +81 070 8982 83481
+          </div>
+          <div class="tag">最晚租借2日前預約</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 高崎飯店入住 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-hotel">🏨</div>
+          <div>
+            <div class="card-type">Hotel · ikyu.com 已確認</div>
+            <div class="card-title">ホテルココ・グラン高崎</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>地址</strong> <a href="https://maps.google.com/?q=群馬県高崎市栄町3-5+ホテルココグラン高崎" target="_blank" style="color:var(--accent)">群馬縣高崎市栄町3-5（高崎站東口步行直結）</a><br>
+            <strong>入住</strong> 3月11日 15:00 起<br>
+            <strong>退房</strong> 3月13日 11:00 前<br>
+            <strong>電話</strong> 027-320-1155
+          </div>
+          <div class="tag">2晚連住</div>
+          <div class="tag">¥21,090</div>
+          <div class="tag">預約番號 IN1523947407</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Day 3 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="date">3.12</span>
+      <span class="weekday">Thursday<br>滑雪日</span>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-snow">⛷️</div>
+          <div>
+            <div class="card-type">Ski Day 2 · 越後湯澤</div>
+            <div class="card-title">湯澤高原 / 岩原滑雪場</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>滑雪時間</strong> 09:00 ～ 15:00<br>
+            雪具已於前日租借
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 越後湯澤→高崎（回飯店） -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-train">🚄</div>
+          <div>
+            <div class="card-type">上越新幹線 · 往東京方向</div>
+            <div class="card-title">越後湯澤 → 高崎（返回飯店）</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">15:33 發</span>
+            <span class="station">越後湯澤</span>
+            <span class="arrow">→</span>
+            <span class="station">高崎</span>
+            <span class="time">16:01 到</span>
+          </div>
+          <div class="card-detail">たにがわ · 約 28 分鐘</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Day 4 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="date">3.13</span>
+      <span class="weekday">Friday<br>滑雪＋移動日</span>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-hotel">🏨</div>
+          <div>
+            <div class="card-type">Check-out</div>
+            <div class="card-title">ホテルココ・グラン高崎 退房</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">上午 11:00 前退房 · 行李寄放飯店前台</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 高崎→越後湯澤（最後一天滑雪） -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-train">🚄</div>
+          <div>
+            <div class="card-type">上越新幹線 · 往新潟方向</div>
+            <div class="card-title">高崎 → 越後湯澤（滑雪）</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">11:01 發</span>
+            <span class="station">高崎</span>
+            <span class="arrow">→</span>
+            <span class="station">越後湯澤</span>
+            <span class="time">11:29 到</span>
+          </div>
+          <div class="card-detail">たにがわ · 約 28 分鐘</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- Ski Day 3 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-snow">⛷️</div>
+          <div>
+            <div class="card-type">Ski Day 3 · 越後湯澤</div>
+            <div class="card-title">湯澤高原 / 岩原滑雪場</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>滑雪時間</strong> 09:00 ～ 15:00<br>
+            雪具歸還後前往車站
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 越後湯澤→東京 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-train">🚄</div>
+          <div>
+            <div class="card-type">上越新幹線 · 往東京方向</div>
+            <div class="card-title">越後湯澤 → 東京</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">15:12 發</span>
+            <span class="station">越後湯澤</span>
+            <span class="arrow">→</span>
+            <span class="station">東京</span>
+            <span class="time">約17:00 到</span>
+          </div>
+          <div class="card-detail">とき · 約 105 分鐘</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 南砂町飯店入住 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-hotel">🏨</div>
+          <div>
+            <div class="card-type">Hotel · Booking.com 已確認</div>
+            <div class="card-title">L stay & grow Minami Sunamachi</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>地址</strong> <a href="https://maps.google.com/?q=L+stay+grow+Minami+Sunamachi+Tokyo" target="_blank" style="color:var(--accent)">東京都江東區南砂町（東西線南砂町站步行7分）</a><br>
+            <strong>入住</strong> 3月13日 15:00 起<br>
+            <strong>退房</strong> 3月14日 12:00 前
+          </div>
+          <div class="tag">1晚</div>
+          <div class="tag">TWD 2,299</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Day 5 回程 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="date">3.14</span>
+      <span class="weekday">Saturday<br>返台日</span>
+    </div>
+
+    <!-- 退房 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-hotel">🏨</div>
+          <div>
+            <div class="card-type">Check-out</div>
+            <div class="card-title">L stay & grow Minami Sunamachi 退房</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">中午 12:00 前退房 · 建議 11:30 出發</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 南砂町→東京站 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-mrt">🚇</div>
+          <div>
+            <div class="card-type">東京Metro 東西線</div>
+            <div class="card-title">南砂町 → 大手町（換乘東京站）</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">約 20 分鐘 · 大手町步行至東京站 N'EX 月台約 10 分鐘</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- N'EX -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-train">🚃</div>
+          <div>
+            <div class="card-type">成田特快 N'EX · JR · No.33</div>
+            <div class="card-title">東京站 → 成田空港 T1</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">12:33 發</span>
+            <span class="station">東京</span>
+            <span class="arrow">→</span>
+            <span class="station">成田 T1</span>
+            <span class="time">13:26 到</span>
+          </div>
+          <div class="card-detail">約 53 分鐘 · JR Pass 免費 · 建議提前預約指定席</div>
+          <div class="tag">起飛前 3h49m 抵達 ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 回程航班 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-flight">✈️</div>
+          <div>
+            <div class="card-type">Flight · Thai Lion Air SL 395</div>
+            <div class="card-title">東京成田 → 桃園</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="station">NRT</span>
+            <span class="arrow">——————→</span>
+            <span class="station">TPE</span>
+          </div>
+          <div class="card-detail">
+            <strong>出發</strong> 17:15 東京成田機場 T1<br>
+            <strong>抵達</strong> 20:20 桃園國際機場 T1<br>
+            <strong>飛行時間</strong> 4小時5分鐘 · 經濟艙
+          </div>
+          <div class="tag">訂位代號 NZHDDT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>📝 注意事項</strong><br>
+    · <strong>🎫 JR 東京廣域周遊券（3日）¥15,000</strong>：使用日期 3/11–3/13，需在 <strong>3/13 前購買</strong>（3/14起漲價）。涵蓋上野↔越後湯澤全段新幹線，省約 ¥8,220。<br>
+    · <strong>⚠️ 持 Pass 仍須劃位</strong>：上野→高崎、高崎→越後湯澤、越後湯澤→高崎、高崎→越後湯澤、越後湯澤→東京，共 5 段皆需透過 えきねっと 預約指定席。<br>
+    · 3/14 N'EX 建議另購來回優惠券 ¥5,000（去程 3/10 + 回程 3/14）。<br>
+    · 3/14 為 JR 東日本改班日，請事先確認最新時刻。<br>
+    · 航班無提供餐食服務，建議自備。<br>
+    · 3/11 飯店（台東區柳橋）步行約 10 分鐘可達上野站，請於 14:46 前抵達月台。<br>
+    · ホテルココ・グラン 取消免費期限為 3/9，信用卡將於 3/12 15:00 扣款。<br>
+    · 雪具最晚需提前 2 日預約。
+  </div>
+
+</div>
+</body>
+<script>
+  const slider = document.querySelector('.transport-slider');
+  const dots = document.querySelectorAll('.dot');
+  if (slider) {
+    slider.addEventListener('scroll', () => {
+      const idx = Math.round(slider.scrollLeft / slider.offsetWidth);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    });
+  }
+</script>
+</html>
