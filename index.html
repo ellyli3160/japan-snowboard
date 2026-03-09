@@ -843,6 +843,26 @@
       <span class="weekday">Thursday<br>滑雪日</span>
     </div>
 
+    <!-- 接駁車 3/12 -->
+    <div class="card" id="card-312-shuttle">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-snow">🚐</div>
+          <div>
+            <div class="card-type">接駁車 · 已預約</div>
+            <div class="card-title">湯澤車站 → 雪具店</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>時間</strong> 07:30 發車
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
     <div class="card" id="card-312-ski">
       <div class="card-inner">
         <div class="card-header">
@@ -932,6 +952,26 @@
             <span class="time">11:29 到</span>
           </div>
           <div class="card-detail">たにがわ · 約 28 分鐘</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 接駁車 3/13 -->
+    <div class="card" id="card-313-shuttle">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-snow">🚐</div>
+          <div>
+            <div class="card-type">接駁車 · 已預約</div>
+            <div class="card-title">湯澤車站 → 雪具店</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-detail">
+            <strong>時間</strong> 08:30 發車
+          </div>
         </div>
       </div>
     </div>
@@ -1159,11 +1199,13 @@
       ],
       12: [
         [0,     'day-0312'],
+        [7*60+30,'card-312-shuttle'],
         [9*60,  'card-312-ski'],
         [15*60+30,'card-312-train'],
       ],
       13: [
         [0,     'day-0313'],
+        [8*60+30,'card-313-shuttle'],
         [10*60+30,'card-313-checkout'],
         [11*60, 'card-313-train1'],
         [11*60+30,'card-313-ski'],
