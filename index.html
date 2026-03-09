@@ -843,6 +843,32 @@
       <span class="weekday">Thursday<br>滑雪日</span>
     </div>
 
+    <!-- 高崎→越後湯澤（滑雪去程）3/12 -->
+    <div class="card" id="card-312-train-go">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-train">🚄</div>
+          <div>
+            <div class="card-type">上越新幹線 · 往新潟方向</div>
+            <div class="card-title">高崎 → 越後湯澤</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">06:58 發</span>
+            <span class="station">高崎</span>
+            <span class="arrow">→</span>
+            <span class="station">越後湯澤</span>
+            <span class="time">07:22 到</span>
+          </div>
+          <div class="card-detail">約 24 分鐘</div>
+          <div class="price">¥4,090</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
     <!-- 接駁車 3/12 -->
     <div class="card" id="card-312-shuttle">
       <div class="card-inner">
@@ -952,6 +978,32 @@
             <span class="time">11:29 到</span>
           </div>
           <div class="card-detail">たにがわ · 約 28 分鐘</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- 高崎→越後湯澤（滑雪去程）3/13 -->
+    <div class="card" id="card-313-train-go">
+      <div class="card-inner">
+        <div class="card-header">
+          <div class="card-icon icon-train">🚄</div>
+          <div>
+            <div class="card-type">上越新幹線 · 往新潟方向</div>
+            <div class="card-title">高崎 → 越後湯澤</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="route">
+            <span class="time">07:35 發</span>
+            <span class="station">高崎</span>
+            <span class="arrow">→</span>
+            <span class="station">越後湯澤</span>
+            <span class="time">08:02 到</span>
+          </div>
+          <div class="card-detail">約 27 分鐘</div>
+          <div class="price">¥4,090</div>
         </div>
       </div>
     </div>
@@ -1199,12 +1251,14 @@
       ],
       12: [
         [0,     'day-0312'],
+        [6*60+58,'card-312-train-go'],
         [7*60+30,'card-312-shuttle'],
         [9*60,  'card-312-ski'],
         [15*60+30,'card-312-train'],
       ],
       13: [
         [0,     'day-0313'],
+        [7*60+35,'card-313-train-go'],
         [8*60+30,'card-313-shuttle'],
         [10*60+30,'card-313-checkout'],
         [11*60, 'card-313-train1'],
